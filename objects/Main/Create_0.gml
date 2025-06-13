@@ -1,14 +1,32 @@
 
+enums();
+macros();
+
 fovy();
 
+
+// data
+item_data();
+item_init();
+
+effect_data();
+effect_init();
+
+
+// globals
 globalvar Game;
 Game = {
 	name: "",
 	version: "0.0 indev",
-	author: "amdrei",
+	author: "amdreiSO",
+	links: {
+		discord: "",
+		youtube: "https://www.youtube.com/channel/UCT-lQnbYpMKoVPWaQXB_DMw",
+	}
 };
 
 globalvar GameSpeed; GameSpeed = 1;
+globalvar Paused; Paused = false;
 globalvar Debug; Debug = {
 	debug: false,
 	tools: false,
@@ -29,9 +47,6 @@ globalvar Settings; Settings = {
 };
 
 
-// data
-item_data();
-
-
+instance_create_depth(x, y, depth, SurfaceHandler);
 instance_create_depth(200, 200, depth, Player);
 

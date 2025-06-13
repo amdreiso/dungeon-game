@@ -1,2 +1,5 @@
 
 movement();
+attack();
+
+handleInventory();

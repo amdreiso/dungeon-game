@@ -7,6 +7,7 @@ enum ITEM_TYPE {
 }
 
 enum ITEM_RARITY {
+	Trash,
 	Common,
 	Uncommon,
 	Rare,
@@ -18,6 +19,10 @@ enum ITEM_RARITY {
 
 enum ITEM_ID {
 	Pistol,
+}
+
+enum EFFECT_ID {
+	Burn,
 }
 	
 }

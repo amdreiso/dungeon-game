@@ -19,7 +19,7 @@ target = noone;
 offset = vec2();
 followSpeed = 0.1;
 
-zoom = 1.5;
+zoom = 0.75;
 zoomLerp = zoom;
 zoomSpd = 0.2;
 
