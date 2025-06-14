@@ -13,20 +13,21 @@ isHit = false;
 hitCooldown = 0;
 isDead = false;
 
-hit = function(damage, e, shake = 0.8, stun = 5) {
+hit = function(damage, e, shake = 2.8) {
 	if (isHit) return;
 	
 	hp -= damage;
 	camera_shake(shake);
 	
 	hitCooldown = 0;
-	isHit = true;
-	sleep = stun;
+	//isHit = true;
 	
 	checkDead();
 	
 	hitmarker_create(damage);
 }
+
+checkDead = function(){}
 
 
 // movement
@@ -35,7 +36,7 @@ spd = defaultSpd;
 hsp = 0;
 vsp = 0;
 force = vec2();
-dashSpd = 3;
+dashSpd = 1.75;
 isDashing = false;
 isMoving = false;
 
@@ -47,10 +48,8 @@ movement = function() {
 	var down = keyboard_check(ord("S"));
 	var right = keyboard_check(ord("D"));
 	
-	x += hsp;
-	y += vsp;
-	hsp += force.x;
-	vsp += force.y;
+	x += hsp + force.x;
+	y += vsp + force.y;
 	
 	isMoving = (hsp != 0 || vsp != 0);
 	
@@ -74,6 +73,17 @@ movement = function() {
 dash = function() {
 	force.x += (hsp * dashSpd);
 	force.y += (vsp * dashSpd);
+}
+
+
+// collisions
+collisions = function() {
+	
+	if (place_meeting(x, y, Enemy)) {
+		var inst = instance_nearest(x, y, Enemy);
+		hit(inst.damage, inst);
+	}
+	
 }
 
 
@@ -124,6 +134,9 @@ handleInventory = function() {
 	
 	handIndex -= (mouse_wheel_up() && handIndex > 0) ? 1 : 0;
 	handIndex += (mouse_wheel_down() && handIndex < array_length(hands)-1) ? 1 : 0;
+	
+	if (keyboard_check_pressed(ord("1"))) handIndex = 0;
+	if (keyboard_check_pressed(ord("2"))) handIndex = 1;
 }
 
 
@@ -139,6 +152,7 @@ attack = function() {
 	if (item == -1) return;
 	
 	var type = ITEM.getType(item);
+	var comps = ITEM.get(item).components;
 	
 	switch (type) {
 		case ITEM_TYPE.Weapon:
@@ -148,13 +162,13 @@ attack = function() {
 			// shoot
 			if (mouse_check_button(mb_left) && shootCooldown == 0) {
 				projectile_create(
-					x, y, depth, sProjectile_pixel, 4
+					x, y, depth, sProjectile_pixel, 4, comps.projectileKnockback
 				);
 				shootCooldown = 10;
 				
-				weaponRecoil = ITEM.get(item).components.recoil;
+				weaponRecoil = comps.recoil;
 				
-				camera_shake(ITEM.get(item).components.cameraShake);
+				camera_shake(comps.cameraShake);
 			}
 			
 			break;
@@ -194,11 +208,14 @@ drawWeapon = function() {
 }
 
 drawWeaponGUI = function() {
+	// item slots
 	var str;
 	var color;
 	var text;
 	var background;
 	var cringenumberfuck = 0.0;
+	var margin = 5;
+	var height = 32;
 	
 	for (var i = 0; i < array_length(hands); i++) {
 		var item = hands[i].itemID;
@@ -215,8 +232,6 @@ drawWeaponGUI = function() {
 		
 		var alpha = 1;
 		var scale = 1;
-		var height = 32;
-		var margin = 5;
 		
 		if (i == handIndex) {
 			alpha = 1;
@@ -227,24 +242,33 @@ drawWeaponGUI = function() {
 			cringenumberfuck = 0.0;
 		}
 		
-		draw_set_alpha(0.5);
-		var offset = 4 + random_range(-cringenumberfuck, cringenumberfuck);
-		draw_rectangle_color(
-			margin + offset, 
-			margin + i * height + offset, 
-			margin + string_width(str) + offset, 
-			margin + string_height(str) + i * height + offset, 
-			background, background, background, background, false
-		);
-		draw_set_alpha(1);
+		//draw_set_alpha(0.5);
+		//var offset = 4 + random_range(-cringenumberfuck, cringenumberfuck);
+		//draw_rectangle_color(
+		//	margin + offset, 
+		//	margin + i * height + offset, 
+		//	margin + string_width(str) + offset, 
+		//	margin + string_height(str) + i * height + offset, 
+		//	background, background, background, background, false
+		//);
+		//draw_set_alpha(1);
 		
-		draw_set_halign(fa_left);
-		draw_set_valign(fa_top);
+		//draw_set_halign(fa_left);
+		//draw_set_valign(fa_top);
 		
-		draw_rectangle_color(margin, margin + i * height, margin + string_width(str), margin + string_height(str) + i * height, background, background, background, background, false);
-		draw_text_transformed_color(margin, margin + i * height, str, scale, scale, 0, text, text, text, text, alpha);
+		//draw_rectangle_color(margin, margin + i * height, margin + string_width(str), margin + string_height(str) + i * height, background, background, background, background, false);
+		//draw_text_transformed_color(margin, margin + i * height, str, scale, scale, 0, text, text, text, text, alpha);
+		draw_label(margin, margin + i * height, str, scale, background, text, alpha);
 	}
 	
+	// health
+	draw_label_width(margin, margin + 3 * height, "[ HP ]", defaultHp, 1, c_white, c_white, 1);
+	draw_label_width(margin, margin + 3 * height, "[ HP ]", hp, 1, c_red, c_white, 1);
+}
+
+
+drawGUI = function() {
+	drawWeaponGUI();
 }
 
 

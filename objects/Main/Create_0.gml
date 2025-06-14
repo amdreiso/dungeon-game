@@ -46,6 +46,7 @@ globalvar Settings; Settings = {
 	},
 };
 
+globalvar Debug; Debug = true;
 
 instance_create_depth(x, y, depth, SurfaceHandler);
 instance_create_depth(200, 200, depth, Player);

@@ -37,6 +37,7 @@ function item_get_default_components(type) {
 				
 				projectileSpeed: 0,
 				projectileSprite: -1,
+				projectileKnockback: 0,
 				
 				cameraShake: 1,
 			});
@@ -48,12 +49,12 @@ function item_get_default_components(type) {
 
 function item_init() {
 	ITEM = {
-		register: function(itemID, type, name, sprite, components = {}) {
+		register: function(itemID, type, name, icon, components = {}) {
 			var item = {};
 			
 			item.name = name;
 			item.type = type;
-			item.sprite = sprite;
+			item.icon = icon;
 			item.components = item_get_default_components(type);
 			
 			struct_merge(item.components, components);
@@ -132,6 +133,8 @@ function item_init() {
 		
 		// draw
 		sprite: sWeapon_Pistol,
+		
+		projectileKnockback: 1,
 	});
 }
 

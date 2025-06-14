@@ -1,2 +1,2 @@
 
-drawWeaponGUI();
+drawGUI();
