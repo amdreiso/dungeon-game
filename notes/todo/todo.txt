@@ -1,0 +1,16 @@
+
+LEVELS
+
+when entering a new level the player will be granted a Trash weapon
+
+levels will have rooms, such as gamble rooms(shops), and just rooms with enemies and all
+
+when entering a level, the level progression will be completely random, having a number of said rooms before-hand like this:
+
+gambleShops = 2; // 2 gamble shops in the level
+normalRooms = 20; // 20 rooms with enemies
+healthRooms = 5; // rooms with monument that heals the player
+
+and the last room is going to have a boss
+
+everytime you advance to a new room, the program will roll the dice to choose which room to put you in

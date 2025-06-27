@@ -1,0 +1,25 @@
+{
+  "$GMSound":"",
+  "%Name":"snd_coin",
+  "audioGroupId":{
+    "name":"audiogroup_sfx",
+    "path":"audiogroups/audiogroup_sfx",
+  },
+  "bitDepth":1,
+  "bitRate":128,
+  "compression":0,
+  "conversionMode":0,
+  "duration":0.1814966,
+  "name":"snd_coin",
+  "parent":{
+    "name":"sfx",
+    "path":"folders/Sounds/sfx.yy",
+  },
+  "preload":false,
+  "resourceType":"GMSound",
+  "resourceVersion":"2.0",
+  "sampleRate":44100,
+  "soundFile":"snd_coin.wav",
+  "type":0,
+  "volume":0.26,
+}

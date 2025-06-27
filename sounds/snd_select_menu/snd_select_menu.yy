@@ -1,0 +1,25 @@
+{
+  "$GMSound":"",
+  "%Name":"snd_select_menu",
+  "audioGroupId":{
+    "name":"audiogroup_sfx",
+    "path":"audiogroups/audiogroup_sfx",
+  },
+  "bitDepth":1,
+  "bitRate":128,
+  "compression":0,
+  "conversionMode":0,
+  "duration":1.2575511,
+  "name":"snd_select_menu",
+  "parent":{
+    "name":"gui",
+    "path":"folders/Sounds/sfx/gui.yy",
+  },
+  "preload":false,
+  "resourceType":"GMSound",
+  "resourceVersion":"2.0",
+  "sampleRate":44100,
+  "soundFile":"snd_select_menu.wav",
+  "type":0,
+  "volume":1.0,
+}

@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"coin_add",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"coin_add",
+  "parent":{
+    "name":"common",
+    "path":"folders/Scripts/common.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

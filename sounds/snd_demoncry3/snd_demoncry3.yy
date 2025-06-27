@@ -1,0 +1,25 @@
+{
+  "$GMSound":"",
+  "%Name":"snd_demoncry3",
+  "audioGroupId":{
+    "name":"audiogroup_sfx",
+    "path":"audiogroups/audiogroup_sfx",
+  },
+  "bitDepth":1,
+  "bitRate":128,
+  "compression":0,
+  "conversionMode":0,
+  "duration":1.3844898,
+  "name":"snd_demoncry3",
+  "parent":{
+    "name":"orc",
+    "path":"folders/Sounds/sfx/enemies/orc.yy",
+  },
+  "preload":false,
+  "resourceType":"GMSound",
+  "resourceVersion":"2.0",
+  "sampleRate":44100,
+  "soundFile":"snd_demoncry3.mp3",
+  "type":0,
+  "volume":1.0,
+}

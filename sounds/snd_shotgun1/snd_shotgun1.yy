@@ -1,0 +1,25 @@
+{
+  "$GMSound":"",
+  "%Name":"snd_shotgun1",
+  "audioGroupId":{
+    "name":"audiogroup_default",
+    "path":"audiogroups/audiogroup_default",
+  },
+  "bitDepth":1,
+  "bitRate":128,
+  "compression":0,
+  "conversionMode":0,
+  "duration":2.584626,
+  "name":"snd_shotgun1",
+  "parent":{
+    "name":"shotgun",
+    "path":"folders/Sounds/sfx/weapons/shotgun.yy",
+  },
+  "preload":false,
+  "resourceType":"GMSound",
+  "resourceVersion":"2.0",
+  "sampleRate":44100,
+  "soundFile":"snd_shotgun1.wav",
+  "type":0,
+  "volume":1.0,
+}

@@ -9,3 +9,4 @@ yscale = scale;
 degrade = false;
 
 alarm[0] = 120;
+

@@ -3,6 +3,8 @@
 busy = false;
 sleep = 0;
 
+destroyParticles = sParticle_Blood;
+
 
 // Movement
 allowMovement = true;
@@ -13,15 +15,15 @@ vsp = 0;
 force = vec2();
 isMoving = false;
 
-target = Player;
+target = noone;
 damage = 15;
 knockback = 5;
 
 effects = [];
-
+effectColor = true;
 
 handleMovement = function() {
-	if (target == noone || sleep > 0 || busy) return;
+	if (target == noone || busy) return;
 	
 	spd = defaultSpd;
 	isMoving = (hsp != 0 || vsp != 0);
@@ -38,6 +40,11 @@ handleMovement = function() {
 	if (allowMovement) {
 		x += hsp + force.x;
 		y += vsp + force.y;
+	}
+	
+	if (sleep > 0) {
+		hsp = 0;
+		vsp = 0;
 	}
 }
 
@@ -83,17 +90,21 @@ hit = function(damage, e, shake = 0.8, stun = 5) {
 	hp -= damage;
 	camera_shake(shake);
 	
-	hitCooldown = 0;
+	hitCooldown = 20;
 	isHit = true;
 	sleep = stun;
 	
 	checkDead();
 	
+	particle_create_blood(1, 2);
+	
 	hitmarker_create(damage);
+	sound3D(-1, x, y, snd_hit1, false, 0.20, random_range(1.00, 1.50), 0.1);
 }
 
 
 // Draw
+angleTilt = 14;
 color = c_white;
 
 spriteState = {
@@ -101,11 +112,19 @@ spriteState = {
 	move: sDefault,
 }
 
+timeOffset = irandom(100) * 100;
+
 draw = function(){
+	depth = -y;
+	
 	var sprite = spriteState.idle;
+
+	image_angle = 0;
 	
 	if (isMoving) {
 		sprite = spriteState.move;
+		var time = current_time + timeOffset;
+		image_angle = sin(time * 0.02) * angleTilt;
 	} else {
 	}
 	
@@ -116,7 +135,12 @@ draw = function(){
 	image_blend = color;
 	
 	sprite_index = sprite;
+	
+	gpu_set_fog((hitCooldown > 0), c_white, 0, 1);
+	
 	draw_self();
+	
+	gpu_set_fog(false, c_white, 0, 1);
 }
 
 

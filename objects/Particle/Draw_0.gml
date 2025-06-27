@@ -1,5 +1,5 @@
 
-depth = -99999;
+depth = -999999;
 
 if (sprite == -1) return;
 
@@ -10,14 +10,18 @@ if (getRandomSprite) {
 	getRandomSprite = false;
 }
 
+image_alpha = alpha;
+
+image_blend = color;
+
+image_angle = angle + theta;
+
 image_xscale = xscale * scale;
 image_yscale = yscale * scale;
 
 sprite_index = sprite;
 
-//surface_set_target(SurfaceHandler.surface);
-
+surface_set_target(SurfaceHandler.particleSurface);
 draw_self();
-
-//surface_reset_target();
+surface_reset_target();
 

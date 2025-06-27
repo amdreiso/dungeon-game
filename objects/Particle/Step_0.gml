@@ -8,6 +8,10 @@ if (gravityApply) {
 
 tick += GameSpeed;
 
-if (tick >= destroyTime) {
+if (tick >= destroyTime || alpha < 0.05) {
 	instance_destroy();
+}
+
+if (fadeOut) {
+	alpha = max(0, alpha - fadeOutSpeed * GameSpeed);
 }

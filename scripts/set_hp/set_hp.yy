@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"set_hp",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"set_hp",
+  "parent":{
+    "name":"common",
+    "path":"folders/Scripts/common.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

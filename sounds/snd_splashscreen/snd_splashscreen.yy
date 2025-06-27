@@ -1,0 +1,25 @@
+{
+  "$GMSound":"",
+  "%Name":"snd_splashscreen",
+  "audioGroupId":{
+    "name":"audiogroup_music",
+    "path":"audiogroups/audiogroup_music",
+  },
+  "bitDepth":1,
+  "bitRate":128,
+  "compression":0,
+  "conversionMode":0,
+  "duration":14.811429,
+  "name":"snd_splashscreen",
+  "parent":{
+    "name":"songs",
+    "path":"folders/Sounds/songs.yy",
+  },
+  "preload":false,
+  "resourceType":"GMSound",
+  "resourceVersion":"2.0",
+  "sampleRate":44100,
+  "soundFile":"snd_splashscreen.mp3",
+  "type":0,
+  "volume":1.0,
+}

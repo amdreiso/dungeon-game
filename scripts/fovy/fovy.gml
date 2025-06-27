@@ -10,13 +10,55 @@ function fovy(){
 	show_debug_message("Loaded fovy!");
 }
 
+function string_pad(str, val) {
+	while (string_length(str) < val) str+=" ";
+	return str;
+}
+
+function format_number(n) {
+	if (n >= 1_000_000_000) return string_format(n / 1_000_000_000, 0, 1) + "B";
+	if (n >= 1_000_000) return string_format(n / 1_000_000, 0, 1) + "M";
+	if (n >= 1_000) return string_format(n / 1_000, 0, 1) + "K";
+	return string(n);
+}
+
+function merge_struct_into_instance(target, struct) {
+  var keys = variable_struct_get_names(struct);
+	
+  for (var i = 0; i < array_length(keys); i++) {
+		var index = struct_get(struct, keys[i]);
+		
+		if (is_method(index)) {
+			var value = index();
+			struct_set(struct, keys[i], value);
+		}
+		
+    variable_instance_set(target, keys[i], index);
+	}
+	
+}
+
+function color_invert(color) {
+  var r = 255 - color_get_red(color);
+  var g = 255 - color_get_green(color);
+  var b = 255 - color_get_blue(color);
+  return make_color_rgb(r, g, b);
+}
+
+function color_darkness(color, value) {
+	var hue = color_get_hue(color);
+	var sat = color_get_saturation(color);
+	var val = color_get_value(color) - value;
+	return make_color_hsv(hue, sat, val);
+}
+
 function position_tolerance(xx, yy, tolerance) {
 	var t = tolerance;
 	return (x > xx - t && x < yy + t && y > yy - t && y < yy + t);
 }
 
 function on_last_frame(fn) {
-	if (round(image_index) == sprite_get_number(sprite_index)) {
+	if (ceil(image_index) == sprite_get_number(sprite_index)) {
 		fn();
 	}
 }
@@ -193,6 +235,22 @@ function button(
 			
 			break;
 	}
+}
+
+function button_clear(
+	x, y, width, height, fn = function(){}
+) {
+	var range = (mouse_x > x && mouse_x < x + width && mouse_y > y && mouse_y < y + height);
+	if (range) fn();
+}
+
+function button_clear_gui(
+	x, y, width, height, fn = function(){}
+) {
+	var mx = window_mouse_get_x();
+	var my = window_mouse_get_y();
+	var range = (mx > x && mx < x + width && my > y && my < y + height);
+	if (range) fn();
 }
 
 function button_gui(

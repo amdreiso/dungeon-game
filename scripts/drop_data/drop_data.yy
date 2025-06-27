@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"drop_data",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"drop_data",
+  "parent":{
+    "name":"data",
+    "path":"folders/Scripts/data.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"particle_create_blood",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"particle_create_blood",
+  "parent":{
+    "name":"particle",
+    "path":"folders/Scripts/particle.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

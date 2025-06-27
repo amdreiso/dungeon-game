@@ -6,6 +6,9 @@ depth = -y;
 color = c_white;
 
 
+if (instance_exists(Player)) target = Player;
+
+
 // Movement
 handleMovement();
 
@@ -54,5 +57,6 @@ with (Enemy) {
   }
 }
 
+level_set_boundaries();
 
 

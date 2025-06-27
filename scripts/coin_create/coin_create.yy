@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"coin_create",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"coin_create",
+  "parent":{
+    "name":"drops",
+    "path":"folders/Scripts/drops.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}
